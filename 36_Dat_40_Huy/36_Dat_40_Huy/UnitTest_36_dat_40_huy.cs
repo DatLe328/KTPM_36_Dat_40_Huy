@@ -69,7 +69,7 @@ namespace _36_Dat_40_Huy
             }
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void LoginFail_36_Dat_40_Huy()
         {
             // Mở trình duyệt
@@ -95,6 +95,23 @@ namespace _36_Dat_40_Huy
             IWebElement errorElement_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"touchableErrorMessage\"]"));
             string errorMessage = errorElement_36_Dat_40_Huy.Text;
             Assert.IsTrue(errorMessage.Contains("The password you entered is incorrect."), "Error message not displayed correctly!");
+        }
+        [TestMethod]
+        public void LoginCheckMail_36_Dat_40_Huy()
+        {
+            driver_36_Dat_40_Huy = new ChromeDriver();
+            driver_36_Dat_40_Huy.Navigate().GoToUrl("https://www.pinterest.com/");
+            Thread.Sleep(3000);
+            driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"simple-login-button\"]")).Click();
+            Thread.Sleep(5000);
+            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("2251050014dat");
+            driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("143122");
+
+            driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"registerFormSubmitButton\"]")).Click();
+
+            string actualErrorText = driver_36_Dat_40_Huy.FindElement(By.Id("email-error")).Text;
+            string expectedErrorText = "Hmm...that doesn't look like an email address.";
+            Assert.AreEqual(actualErrorText, expectedErrorText, "Error texts are not equal!");
         }
 
     }
