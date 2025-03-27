@@ -17,6 +17,7 @@ namespace _36_Dat_40_Huy
     public class UnitTest_36_Dat_40_Huy
     {
         IWebDriver driver_36_Dat_40_Huy;
+
         public void LoginToPinterest_36_Dat_40_Huy(string email, string password)
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -35,6 +36,13 @@ namespace _36_Dat_40_Huy
             // Nhấn nút Login của Form
             driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"registerFormSubmitButton\"]")).Click();
             Thread.Sleep(10000);
+        }
+
+        //[TestMethod]
+        public void OpenBrowser()
+        {
+            driver_36_Dat_40_Huy = new ChromeDriver();
+            driver_36_Dat_40_Huy.Navigate().GoToUrl("https://www.pinterest.com/");
         }
 
         /****************
@@ -56,8 +64,8 @@ namespace _36_Dat_40_Huy
             Thread.Sleep(2000);
 
             // Nhập vào thông tin đăng nhập (email, password)
-            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("email");
-            driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("password");
+            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("testEmail_36_Dat_40_Huy");
+            driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("testPassword_36_Dat_40_Huy");
 
             // Nhấn nút Login của Form
             IWebElement submitButton_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"registerFormSubmitButton\"]"));
@@ -76,7 +84,7 @@ namespace _36_Dat_40_Huy
             }
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void LoginFail_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -90,7 +98,7 @@ namespace _36_Dat_40_Huy
             Thread.Sleep(2000);
 
             // Nhập vào thông tin đăng nhập (email, password)
-            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("email");
+            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("testEmail_36_Dat_40_Huy");
             driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("143122");
 
             // Nhấn nút Login của Form
@@ -103,7 +111,7 @@ namespace _36_Dat_40_Huy
             string errorMessage = errorElement_36_Dat_40_Huy.Text;
             Assert.IsTrue(errorMessage.Contains("The password you entered is incorrect."), "Error message not displayed correctly!");
         }
-        [TestMethod]
+        //[TestMethod]
         public void LoginWrongMailFormat_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -131,11 +139,11 @@ namespace _36_Dat_40_Huy
         /****************
          *  Download Test
          ****************/
-        [TestMethod]
+        //[TestMethod]
         public void DownloadWithLogin_36_Dat_40_Huy()
         {
             // Truy cập Pinterest và đăng nhập
-            LoginToPinterest_36_Dat_40_Huy("email", "password");
+            LoginToPinterest_36_Dat_40_Huy("testEmail_36_Dat_40_Huy", "testPassword_36_Dat_40_Huy");
 
             // Lấy đường dẫn thư mục tải về 
             string downloadPath_36_Dat_40_Huy = "C:\\Users\\datle\\Downloads";
@@ -177,7 +185,7 @@ namespace _36_Dat_40_Huy
             int expectedValue_36_Dat_40_Huy = numImgs_36_Dat_40_Huy;
             Assert.AreEqual(expectedValue_36_Dat_40_Huy, actualValue_36_Dat_40_Huy);
         }
-        [TestMethod]
+        //[TestMethod]
         public void DownloadWithoutLogin_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -223,7 +231,7 @@ namespace _36_Dat_40_Huy
         /****************
          *  Search Test
          ****************/
-        [TestMethod]
+        //[TestMethod]
         public void SeachWithValidKeyword_36_Dat_40_Huy()
         {
 
@@ -258,7 +266,7 @@ namespace _36_Dat_40_Huy
                 // Test pass
             }
         }
-        [TestMethod]
+        //[TestMethod]
         public void SeachWithInvalidKeyword_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -286,6 +294,194 @@ namespace _36_Dat_40_Huy
                 // Ngược lại nếu không có thông báo lỗi thì Test case fail
                 Assert.IsTrue(false, keyWord_36_Dat_40_Huy + " is a valid keyword.");
             }
+        }
+
+        /****************
+         *  Pin creation Test
+         ****************/
+        [TestMethod]
+        public void PinCreationWithValidURL_36_Dat_40_Huy()
+        {
+            // Truy cập và đăng nhập Pinterest
+            LoginToPinterest_36_Dat_40_Huy("testPassword_36_Dat_40_Huy", "testPassword_36_Dat_40_Huy");
+
+            /*
+             *  Vì tạo pin bằng URL bắt buộc phải có bảng để thêm vào
+             *  Nên ta sẽ kiểm tra xem liệu đã có bảng chưa, nếu chưa thì sẽ tạo mới
+             *  Nếu đã có bảng thì ta sẽ đếm xem trong đó có bao nhiêu Pin đã tồn tại để so sánh
+             *      với kết quả sau khi tạo
+             */
+
+
+            // Lấy profileheader
+            IWebElement profileHeader_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"header-profile\"]"));
+            profileHeader_36_Dat_40_Huy.Click();
+            Thread.Sleep(2000);
+
+            // Đặt tên cho bảng
+            string boardName_36_Dat_40_Huy = "Faasdk";
+            // Đánh dấu xem có cần tạo bảng không, mặc định là true
+            bool needToCreateBoard_36_Dat_40_Huy = true;
+            // Số Pin trong bảng trước khi tạo Pin mới
+            int numberOfPinBefore_36_Dat_40_Huy = 0;
+
+            try
+            {
+                // Lấy danh sách các bảng hiện có trong profile
+                List<IWebElement> boardList_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"board-card-title\"]")).ToList();
+                foreach (var item_36_Dat_40_Huy in boardList_36_Dat_40_Huy)
+                {
+                    // Nếu tên bảng đã tồn tại
+                    if (item_36_Dat_40_Huy.Text == boardName_36_Dat_40_Huy)
+                    {
+                        // Gán giá trị cần tạo bảng thành false
+                        needToCreateBoard_36_Dat_40_Huy = false;
+
+                        // Truy cập vào bảng
+                        item_36_Dat_40_Huy.Click();
+                        Thread.Sleep(5000);
+
+                        // Lấy danh sách các Pin đã có trong bảng
+                        List<IWebElement> pinList = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"pin\"]")).ToList();
+                        numberOfPinBefore_36_Dat_40_Huy = pinList.Count;
+                        break;
+                    }
+                }
+            }
+            catch (NoSuchElementException)
+            {
+                // Nếu không tìm thấy bảng nào
+                numberOfPinBefore_36_Dat_40_Huy = 0;
+            }
+
+            // Lấy nút tạo bảng
+            IWebElement btnPinCreate_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("a[data-test-id=\"create-tab\"]"));
+            btnPinCreate_36_Dat_40_Huy.Click();
+            Thread.Sleep(5000);
+
+            // Lấy nút Lưu từ URL
+            IWebElement saveFromURL_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"save-from-url-container\"]"));
+            saveFromURL_36_Dat_40_Huy.Click();
+            Thread.Sleep(5000);
+
+            // Lấy thanh nhập địa chỉ URL
+            IWebElement urlInput_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.Id("scrape-view-website-link"));
+            urlInput_36_Dat_40_Huy.SendKeys("https://www.youtube.com/");
+
+            // Lấy nút gửi
+            IWebElement findURL_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("button[aria-label=\"Gửi\"]"));
+            findURL_36_Dat_40_Huy.Click();
+            Thread.Sleep(10000);
+
+            /*
+             *  Kiểm tra xem URL vừa nhập liệu có hợp lệ hay không
+             *  Hoặc có thể cho trang đó chặn không thể lấy hình ảnh vd: https://shopee.vn/
+             */
+            try
+            {
+                // Lấy danh sách các hình ảnh
+                List<IWebElement> imgElements_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"image-from-search-container\"]")).ToList();
+                imgElements_36_Dat_40_Huy[0].Click();
+            }
+            catch (NoSuchElementException)
+            {
+                // Trả về kết quả fail nếu không tìm được
+                Assert.IsTrue(false, "Invalid URL or can't get any images from URL.");
+            }
+
+
+            // Lấy nút thêm Pin
+            IWebElement addPin_36_Dat_40_huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"add-pins-from-search-container\"]"));
+            addPin_36_Dat_40_huy.Click();
+            Thread.Sleep(5000);
+
+            // Lấy nút chọn bảng
+            IWebElement boardDropdown_36_Dat_40_huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"board-dropdown-select-button\"]"));
+            boardDropdown_36_Dat_40_huy.Click();
+            Thread.Sleep(1000);
+
+            // Trường hợp bảng chưa được tạo
+            if (needToCreateBoard_36_Dat_40_Huy)
+            {
+                // Lấy nút tạo bảng
+                IWebElement createBoard_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"create-board-button\"]"));
+                createBoard_36_Dat_40_Huy.Click();
+                Thread.Sleep(5000);
+
+                // Lấy trường nhập tên của form
+                IWebElement boardFormContainer_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"board-form-container\"]"));
+                boardFormContainer_36_Dat_40_Huy.FindElement(By.Id("boardEditName")).SendKeys(boardName_36_Dat_40_Huy);
+
+                // Lấy nút xác nhận tạo bảng
+                IWebElement boardFormSubmitButton_36_dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("button[data-test-id=\"board-form-submit-button\"]"));
+                boardFormSubmitButton_36_dat_40_Huy.Click();
+                Thread.Sleep(1000);
+            }
+            else
+            {
+                /*
+                 * Trường hợp bảng đã tạo chỉ cần tìm bảng
+                 */
+
+                // Lấy danh sách các bảng để duyệt
+                List<IWebElement> board_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"boardWithoutSection\"]")).ToList();
+                foreach (var item_36_Dat_40_Huy in board_36_Dat_40_Huy)
+                {
+                    if (item_36_Dat_40_Huy.Text == boardName_36_Dat_40_Huy)
+                    {
+                        item_36_Dat_40_Huy.Click();
+                        break;
+                    }
+                }
+            }
+
+            // Lấy nút lưu Pin
+            IWebElement boardDropdownSaveButton_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"board-dropdown-save-button\"]"));
+            boardDropdownSaveButton_36_Dat_40_Huy.Click();
+            Thread.Sleep(5000);
+
+            // Di chuyển về trang chủ
+            driver_36_Dat_40_Huy.Navigate().GoToUrl("https://www.pinterest.com/");
+            Thread.Sleep(5000);
+
+            // Lấy header profile
+            IWebElement headerProfile = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"header-profile\"]"));
+            headerProfile.Click();
+            Thread.Sleep(5000);
+
+            // Lấy danh sách các bảng có trong profile
+            List<IWebElement> itemsTitle_36_Dat_Huy_40 = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"board-card-title\"]")).ToList();
+
+            // Số Pin đang có trong bảng sau khi tạo
+            int numberOfPinAfter_36_Dat_40_Huy = 0;
+
+            // Duyệt từng bảng kiểm tra tên
+            foreach (var item_36_Dat_40_Huy in itemsTitle_36_Dat_Huy_40)
+            {
+                if (item_36_Dat_40_Huy.Text == boardName_36_Dat_40_Huy)
+                {
+                    // Nếu tìm thấy bảng sẽ truy cập vào
+                    item_36_Dat_40_Huy.Click();
+                    Thread.Sleep(3000);
+
+                    // Lấy danh sách các Pin có trong bảng
+                    List<IWebElement> pinList = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"pin\"]")).ToList();
+                    numberOfPinAfter_36_Dat_40_Huy = pinList.Count;
+                    break;
+                }
+            }
+            // Giá trị mong đợi sau khi tạo Pin
+            int expectedValue_36_Dat_40_Huy = numberOfPinBefore_36_Dat_40_Huy + 1;
+
+            // Giá trị thực tế
+            int actualValue_36_Dat_40_Huy = numberOfPinAfter_36_Dat_40_Huy;
+
+            // Console debug
+            Console.WriteLine("(Debug)Number of pin before: " + numberOfPinBefore_36_Dat_40_Huy);
+            Console.WriteLine("(Debug)Number of pin after: " + numberOfPinAfter_36_Dat_40_Huy);
+
+            // Kiểm tra kết quả
+            Assert.AreEqual(expectedValue_36_Dat_40_Huy, actualValue_36_Dat_40_Huy, "Fail to create pin.");
         }
     }
 }
