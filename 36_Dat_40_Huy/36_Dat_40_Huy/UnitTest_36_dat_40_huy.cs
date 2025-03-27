@@ -113,6 +113,83 @@ namespace _36_Dat_40_Huy
             string expectedErrorText = "Hmm...that doesn't look like an email address.";
             Assert.AreEqual(actualErrorText, expectedErrorText, "Error texts are not equal!");
         }
+        /****************
+         *  Download Test
+         ****************/
+        [TestMethod]
+        public void DownloadWithLogin_36_Dat_40_Huy()
+        {
+            driver_36_Dat_40_Huy = new ChromeDriver();
+            driver_36_Dat_40_Huy.Navigate().GoToUrl("https://www.pinterest.com/");
+            Thread.Sleep(5000);
+            LoginToPinterest_36_Dat_40_Huy("2251050014dat@ou.edu.vn", "075204006947");
+            Thread.Sleep(10000);
+            /* 
+             * Login success
+             */
+            string downloadPath = "C:\\Users\\datle\\Downloads";
+            int fileCountBefore = Directory.GetFiles(downloadPath).Length;
+            int numFiles = 3;
+
+            for (int idx_36_Dat_40_Huy = 0; idx_36_Dat_40_Huy < numFiles; idx_36_Dat_40_Huy++)
+            {
+                List<IWebElement> imgElements_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"pin\"]")).ToList();
+                imgElements_36_Dat_40_Huy[idx_36_Dat_40_Huy].Click();
+                Thread.Sleep(5000);
+
+                IWebElement button = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"closeup-action-bar-button\"]"));
+                button.Click();
+                Thread.Sleep(1000);
+
+                IWebElement downloadButton = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"pin-action-dropdown-download\"]"));
+                downloadButton.Click();
+                Thread.Sleep(5000);
+
+                driver_36_Dat_40_Huy.Navigate().Back();
+                Thread.Sleep(5000);
+            }
+
+            int fileCountAfter = Directory.GetFiles(downloadPath).Length;
+            Console.WriteLine("(Debug)File count before: " + fileCountBefore);
+            Console.WriteLine("(Debug)File count after: " + fileCountAfter);
+            Assert.AreEqual(numFiles, fileCountAfter - fileCountBefore);
+        }
+        [TestMethod]
+        public void DownloadWithoutLogin_36_Dat_40_Huy()
+        {
+            driver_36_Dat_40_Huy = new ChromeDriver();
+            driver_36_Dat_40_Huy.Navigate().GoToUrl("https://www.pinterest.com/");
+            Thread.Sleep(3000);
+
+            IWebElement exploreButon_Dat36_Huy_40 = driver_36_Dat_40_Huy.FindElement(By.CssSelector("#__PWS_ROOT__ > div > div > div:nth-child(1) > div:nth-child(2) > div.QLY._he.zI7.iyn.Hsu > div > div:nth-child(1) > div.Eqh.fev.zI7.iyn.Hsu"));
+            exploreButon_Dat36_Huy_40.Click();
+            Thread.Sleep(5000);
+
+            List<IWebElement> categoryList_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"ideas-root-today-articles\"]")).ToList();
+            categoryList_36_Dat_40_Huy[0].Click();
+            Thread.Sleep(10000);
+
+            List<IWebElement> ideaList = driver_36_Dat_40_Huy.FindElements(By.CssSelector("div[data-test-id=\"pin\"]")).ToList();
+            ideaList[0].Click();
+            Thread.Sleep(5000);
+
+            IWebElement dropdownList_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("button[data-test-id=\"feedback-button\"]"));
+            dropdownList_36_Dat_40_Huy.Click();
+            Thread.Sleep(1000);
+
+            IWebElement downloadButton_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"pin-action-dropdown-download\"]"));
+            downloadButton_36_Dat_40_Huy.Click();
+            Thread.Sleep(1000);
+
+            try
+            {
+                IWebElement signupModal_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"signup-default-modal\"]"));
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.IsTrue(false, "Element not found!");
+            }
+        }
 
     }
 }
