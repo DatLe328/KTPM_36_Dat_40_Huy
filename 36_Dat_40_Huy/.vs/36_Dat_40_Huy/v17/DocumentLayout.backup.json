@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Documents\\2025\\software_testing\\btl\\36_Dat_40_Huy\\",
+  "WorkspaceRootPath": "D:\\Documents\\2025\\software_testing\\btl\\repos\\KTPM_36_Dat_40_Huy\\36_Dat_40_Huy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{85C3C804-60A5-4079-AF61-E7A34A0887C6}|36_Dat_40_Huy\\36_Dat_40_Huy.csproj|d:\\documents\\2025\\software_testing\\btl\\36_dat_40_huy\\36_dat_40_huy\\unittest_36_dat_40_huy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{85C3C804-60A5-4079-AF61-E7A34A0887C6}|36_Dat_40_Huy\\36_Dat_40_Huy.csproj|d:\\documents\\2025\\software_testing\\btl\\repos\\ktpm_36_dat_40_huy\\36_dat_40_huy\\36_dat_40_huy\\unittest_36_dat_40_huy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{85C3C804-60A5-4079-AF61-E7A34A0887C6}|36_Dat_40_Huy\\36_Dat_40_Huy.csproj|solutionrelative:36_dat_40_huy\\unittest_36_dat_40_huy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UnitTest_36_dat_40_huy.cs",
-              "DocumentMoniker": "D:\\Documents\\2025\\software_testing\\btl\\36_Dat_40_Huy\\36_Dat_40_Huy\\UnitTest_36_dat_40_huy.cs",
+              "DocumentMoniker": "D:\\Documents\\2025\\software_testing\\btl\\repos\\KTPM_36_Dat_40_Huy\\36_Dat_40_Huy\\36_Dat_40_Huy\\UnitTest_36_dat_40_huy.cs",
               "RelativeDocumentMoniker": "36_Dat_40_Huy\\UnitTest_36_dat_40_huy.cs",
-              "ToolTip": "D:\\Documents\\2025\\software_testing\\btl\\36_Dat_40_Huy\\36_Dat_40_Huy\\UnitTest_36_dat_40_huy.cs",
+              "ToolTip": "D:\\Documents\\2025\\software_testing\\btl\\repos\\KTPM_36_Dat_40_Huy\\36_Dat_40_Huy\\36_Dat_40_Huy\\UnitTest_36_dat_40_huy.cs",
               "RelativeToolTip": "36_Dat_40_Huy\\UnitTest_36_dat_40_huy.cs",
-              "ViewState": "AgIAAJgBAAAAAAAAAAAYwK8BAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAKIBAAAAAAAAAAAswOMBAABqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T13:43:31.029Z",
               "EditorCaption": ""
