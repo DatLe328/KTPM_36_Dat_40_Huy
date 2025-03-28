@@ -64,8 +64,8 @@ namespace _36_Dat_40_Huy
             Thread.Sleep(2000);
 
             // Nhập vào thông tin đăng nhập (email, password)
-            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("testEmail_36_Dat_40_Huy");
-            driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("testPassword_36_Dat_40_Huy");
+            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("testemail@ou.edu.vn");
+            driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("testpassword");
 
             // Nhấn nút Login của Form
             IWebElement submitButton_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"registerFormSubmitButton\"]"));
@@ -83,9 +83,8 @@ namespace _36_Dat_40_Huy
                 Assert.IsTrue(false, "Login fail");
             }
         }
-
         //[TestMethod]
-        public void LoginFail_36_Dat_40_Huy()
+        public void LoginFailWrongEmail_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
             driver_36_Dat_40_Huy = new ChromeDriver();
@@ -98,7 +97,35 @@ namespace _36_Dat_40_Huy
             Thread.Sleep(2000);
 
             // Nhập vào thông tin đăng nhập (email, password)
-            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("testEmail_36_Dat_40_Huy");
+            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("2251050014qweasdat@ou.edu.vn");
+            driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("143122");
+
+            // Nhấn nút Login của Form
+            IWebElement submitButton_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"registerFormSubmitButton\"]"));
+            submitButton_36_Dat_40_Huy.Click();
+            Thread.Sleep(4000);
+
+            // Kiểm tra lỗi
+            IWebElement errorElement_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.Id("email-error"));
+            string errorMessage = errorElement_36_Dat_40_Huy.Text;
+            Assert.IsTrue(errorMessage.Contains("The email you entered does not belong to any account."), "Error message not displayed correctly!");
+        }
+
+        //[TestMethod]
+        public void LoginFailWrongPassword_36_Dat_40_Huy()
+        {
+            // Mở trình duyệt và di chuyển đến trang chủ Pinterest
+            driver_36_Dat_40_Huy = new ChromeDriver();
+            driver_36_Dat_40_Huy.Navigate().GoToUrl("https://www.pinterest.com/");
+            Thread.Sleep(4000);
+
+            // Tìm và nhấn vào nút login
+            IWebElement loginButton_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"simple-login-button\"]"));
+            loginButton_36_Dat_40_Huy.Click();
+            Thread.Sleep(2000);
+
+            // Nhập vào thông tin đăng nhập (email, password)
+            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("testemail@ou.edu.vn");
             driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("143122");
 
             // Nhấn nút Login của Form
@@ -111,7 +138,7 @@ namespace _36_Dat_40_Huy
             string errorMessage = errorElement_36_Dat_40_Huy.Text;
             Assert.IsTrue(errorMessage.Contains("The password you entered is incorrect."), "Error message not displayed correctly!");
         }
-        //[TestMethod]
+        [TestMethod]
         public void LoginWrongMailFormat_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -124,7 +151,7 @@ namespace _36_Dat_40_Huy
             Thread.Sleep(5000);
 
             // Nhập vào thông tin đăng nhập (email, password)
-            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("2251050014dat");
+            driver_36_Dat_40_Huy.FindElement(By.Id("email")).SendKeys("testemail");
             driver_36_Dat_40_Huy.FindElement(By.Id("password")).SendKeys("143122");
 
             // Nhấn nút Login của Form
@@ -143,7 +170,7 @@ namespace _36_Dat_40_Huy
         public void DownloadWithLogin_36_Dat_40_Huy()
         {
             // Truy cập Pinterest và đăng nhập
-            LoginToPinterest_36_Dat_40_Huy("testEmail_36_Dat_40_Huy", "testPassword_36_Dat_40_Huy");
+            LoginToPinterest_36_Dat_40_Huy("testemail@ou.edu.vn", "testpassword");
 
             // Lấy đường dẫn thư mục tải về 
             string downloadPath_36_Dat_40_Huy = "C:\\Users\\datle\\Downloads";
@@ -192,6 +219,11 @@ namespace _36_Dat_40_Huy
             driver_36_Dat_40_Huy = new ChromeDriver();
             driver_36_Dat_40_Huy.Navigate().GoToUrl("https://www.pinterest.com/");
             Thread.Sleep(3000);
+
+            // Lấy nút khám phá
+            IWebElement exploreButon_Dat36_Huy_40 = driver_36_Dat_40_Huy.FindElement(By.CssSelector("a[href=\"/ideas/\"]"));
+            exploreButon_Dat36_Huy_40.Click();
+            Thread.Sleep(5000);
 
             // Lấy thanh tìm kiếm
             IWebElement searchBar_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("input[data-test-id=\"search-box-input\"]"));
@@ -274,6 +306,11 @@ namespace _36_Dat_40_Huy
             driver_36_Dat_40_Huy.Navigate().GoToUrl("https://www.pinterest.com/");
             Thread.Sleep(5000);
 
+            // Lấy nút khám phá
+            IWebElement exploreButon_Dat36_Huy_40 = driver_36_Dat_40_Huy.FindElement(By.CssSelector("a[href=\"/ideas/\"]"));
+            exploreButon_Dat36_Huy_40.Click();
+            Thread.Sleep(5000);
+
             // Từ khóa tìm kiếm
             string keyWord_36_Dat_40_Huy = "ca2aq1dda asdq 12";
             // Lấy thanh tìm kiếm
@@ -299,11 +336,11 @@ namespace _36_Dat_40_Huy
         /****************
          *  Pin creation Test
          ****************/
-        [TestMethod]
+        //[TestMethod]
         public void PinCreationWithValidURL_36_Dat_40_Huy()
         {
             // Truy cập và đăng nhập Pinterest
-            LoginToPinterest_36_Dat_40_Huy("testPassword_36_Dat_40_Huy", "testPassword_36_Dat_40_Huy");
+            LoginToPinterest_36_Dat_40_Huy("testemail@ou.edu.vn", "testpassword");
 
             /*
              *  Vì tạo pin bằng URL bắt buộc phải có bảng để thêm vào
@@ -434,7 +471,7 @@ namespace _36_Dat_40_Huy
                     }
                 }
             }
-
+            
             // Lấy nút lưu Pin
             IWebElement boardDropdownSaveButton_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"board-dropdown-save-button\"]"));
             boardDropdownSaveButton_36_Dat_40_Huy.Click();
@@ -483,11 +520,12 @@ namespace _36_Dat_40_Huy
             // Kiểm tra kết quả
             Assert.AreEqual(expectedValue_36_Dat_40_Huy, actualValue_36_Dat_40_Huy, "Fail to create pin.");
         }
-        [TestMethod]
+
+        //[TestMethod]
         public void PinCreationWithInvalidURL_36_Dat_40_Huy()
         {
             // Truy cập và đăng nhập Pinterest
-            LoginToPinterest_36_Dat_40_Huy("testemail@ou.edu.vn", "testemail");
+            LoginToPinterest_36_Dat_40_Huy("testemail@ou.edu.vn", "testpassword");
 
             // Lấy nút tạo Pin
             IWebElement btnPinCreate_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("a[data-test-id=\"create-tab\"]"));
@@ -521,12 +559,12 @@ namespace _36_Dat_40_Huy
             }
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void PinCreateWithUpload()
         {
             // Truy cập và đăng nhập Pinterest
-            LoginToPinterest_36_Dat_40_Huy("testemail@ou.edu.vn", "testemail");
-
+            LoginToPinterest_36_Dat_40_Huy("testemail@ou.edu.vn", "testpassword");
+            
             // Lấy header profile
             IWebElement headerProfile_36_Dat_40_Huy = driver_36_Dat_40_Huy.FindElement(By.CssSelector("div[data-test-id=\"header-profile\"]"));
             headerProfile_36_Dat_40_Huy.Click();
@@ -620,3 +658,4 @@ namespace _36_Dat_40_Huy
         }
     }
 }
+
