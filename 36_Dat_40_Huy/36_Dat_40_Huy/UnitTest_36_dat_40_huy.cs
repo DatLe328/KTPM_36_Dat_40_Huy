@@ -38,7 +38,7 @@ namespace _36_Dat_40_Huy
             Thread.Sleep(10000);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void OpenBrowser()
         {
             driver_36_Dat_40_Huy = new ChromeDriver();
@@ -83,7 +83,7 @@ namespace _36_Dat_40_Huy
                 Assert.IsTrue(false, "Login fail");
             }
         }
-        //[TestMethod]
+        [TestMethod]
         public void LoginFailWrongEmail_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -111,7 +111,7 @@ namespace _36_Dat_40_Huy
             Assert.IsTrue(errorMessage.Contains("The email you entered does not belong to any account."), "Error message not displayed correctly!");
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void LoginFailWrongPassword_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -166,7 +166,7 @@ namespace _36_Dat_40_Huy
         /****************
          *  Download Test
          ****************/
-        //[TestMethod]
+        [TestMethod]
         public void DownloadWithLogin_36_Dat_40_Huy()
         {
             // Truy cập Pinterest và đăng nhập
@@ -212,7 +212,7 @@ namespace _36_Dat_40_Huy
             int expectedValue_36_Dat_40_Huy = numImgs_36_Dat_40_Huy;
             Assert.AreEqual(expectedValue_36_Dat_40_Huy, actualValue_36_Dat_40_Huy);
         }
-        //[TestMethod]
+        [TestMethod]
         public void DownloadWithoutLogin_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -263,7 +263,7 @@ namespace _36_Dat_40_Huy
         /****************
          *  Search Test
          ****************/
-        //[TestMethod]
+        [TestMethod]
         public void SeachWithValidKeyword_36_Dat_40_Huy()
         {
 
@@ -298,7 +298,7 @@ namespace _36_Dat_40_Huy
                 // Test pass
             }
         }
-        //[TestMethod]
+        [TestMethod]
         public void SeachWithInvalidKeyword_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -521,7 +521,7 @@ namespace _36_Dat_40_Huy
             Assert.AreEqual(expectedValue_36_Dat_40_Huy, actualValue_36_Dat_40_Huy, "Fail to create pin.");
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void PinCreationWithInvalidURL_36_Dat_40_Huy()
         {
             // Truy cập và đăng nhập Pinterest
@@ -559,7 +559,7 @@ namespace _36_Dat_40_Huy
             }
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void PinCreateWithUpload()
         {
             // Truy cập và đăng nhập Pinterest
