@@ -83,11 +83,7 @@ namespace _36_Dat_40_Huy
                 Assert.IsTrue(false, "Login fail");
             }
         }
-<<<<<<< HEAD
         [TestMethod]
-=======
-        //[TestMethod]
->>>>>>> main
         public void LoginFailWrongEmail_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -115,11 +111,7 @@ namespace _36_Dat_40_Huy
             Assert.IsTrue(errorMessage.Contains("The email you entered does not belong to any account."), "Error message not displayed correctly!");
         }
 
-<<<<<<< HEAD
         [TestMethod]
-=======
-        //[TestMethod]
->>>>>>> main
         public void LoginFailWrongPassword_36_Dat_40_Huy()
         {
             // Mở trình duyệt và di chuyển đến trang chủ Pinterest
@@ -529,11 +521,7 @@ namespace _36_Dat_40_Huy
             Assert.AreEqual(expectedValue_36_Dat_40_Huy, actualValue_36_Dat_40_Huy, "Fail to create pin.");
         }
 
-<<<<<<< HEAD
         [TestMethod]
-=======
-        //[TestMethod]
->>>>>>> main
         public void PinCreationWithInvalidURL_36_Dat_40_Huy()
         {
             // Truy cập và đăng nhập Pinterest
@@ -571,11 +559,7 @@ namespace _36_Dat_40_Huy
             }
         }
 
-<<<<<<< HEAD
         [TestMethod]
-=======
-        //[TestMethod]
->>>>>>> main
         public void PinCreateWithUpload()
         {
             // Truy cập và đăng nhập Pinterest
