@@ -1,1 +1,0 @@
-# KTPM_36_Dat_40_Huy
